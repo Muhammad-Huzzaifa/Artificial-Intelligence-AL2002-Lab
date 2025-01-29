@@ -70,3 +70,28 @@ class Infection(Graph):
             current = preds[current]
         path = path[::-1]
         print(f'Shortest path between {fromVertex} and {toVertex}: {path}')
+
+def main():
+    infection = Infection()
+
+    individuals = ["A", "B", "C", "D", "E", "F", "G"]
+    for person in individuals:
+        infection.add_vertex(person)
+
+    edges = [("A", "B"), ("A", "C"), ("B", "D"), ("C", "D"), ("C", "E"),
+             ("D", "F"), ("E", "F"), ("E", "G")]
+    
+    for edge in edges:
+        infection.add_edge(edge[0], edge[1])
+
+    print("\nBFS Infection Spread from A:")
+    infection.bfs("A")
+
+    print("\nMost Likely to Spread the Disease:")
+    infection.get_most_degree_person()
+
+    print("\nShortest Path between A and G:")
+    infection.sortest_path_btw_two_indiv("A", "G")
+
+if __name__ == "__main__":
+    main()
