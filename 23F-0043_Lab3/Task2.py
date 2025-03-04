@@ -6,14 +6,18 @@ def UCS(start_state, goal_state):
     node = Node(start_state, None, None, 0)
     
     frontier = PriorityQueue()
-    reached = set()
+    expanded = set()
     
     frontier.push(node, node.cost)
-    reached.add(node.state)
     numnodes = 0
     
     while not frontier.is_empty():
         node = frontier.pop()
+        
+        if node.state in expanded:
+             continue
+        
+        expanded.add(node.state)
 
         if node.state == goal_state:
                 return solution(node), numnodes
@@ -21,8 +25,7 @@ def UCS(start_state, goal_state):
         for next_state, next_action, next_cost in node.state.successors():
             numnodes += 1
         
-            if next_state not in reached:
+            if next_state not in expanded:
                 frontier.push(Node(next_state, node, next_action, node.cost + next_cost), node.cost + next_cost)
-                reached.add(next_state)
                 
     return None, numnodes

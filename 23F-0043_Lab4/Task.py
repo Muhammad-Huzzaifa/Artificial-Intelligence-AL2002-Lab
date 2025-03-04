@@ -5,6 +5,9 @@ def GBFS(start_state, goal_state, heuristic):
     Node = namedtuple('Node', ['state', 'parent', 'action'])
     node = Node(start_state, None, None)
 
+    if node.state == goal_state:
+        return solution(node), 0
+    
     frontier = PriorityQueue()
     reached = set()
 
@@ -14,13 +17,13 @@ def GBFS(start_state, goal_state, heuristic):
 
     while not frontier.is_empty():
         node = frontier.pop()
-
-        if node.state == goal_state:
-            return solution(node), numnodes
         
         for next_state, next_action, _ in node.state.successors():
             numnodes += 1
-        
+
+            if next_state == goal_state:
+                return solution(Node(next_state, node, next_action)), numnodes
+            
             if next_state not in reached:
                 frontier.push(Node(next_state, node, next_action), heuristic(next_state, goal_state))
                 reached.add(next_state)
