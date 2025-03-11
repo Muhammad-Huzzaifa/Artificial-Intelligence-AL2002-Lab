@@ -1,6 +1,16 @@
 from Task4 import DLS
 
 def IDS(start_state, goal_state):
+    ''' Iterative deepening search algorithm.
+    
+    Args:
+        start_state: The initial state of the search.
+        goal_state: The goal state of the search.
+        
+    Returns:
+        A tuple containing the solution path, the number of nodes expanded, and the total number of nodes expanded.
+    '''
+    
     depth = 0
     totalnodes = 0 
 

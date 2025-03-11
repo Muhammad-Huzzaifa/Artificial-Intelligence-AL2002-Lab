@@ -1,7 +1,22 @@
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from collections import namedtuple
 from provided.utils import Queue, solution
 
 def BFS(start_state, goal_state):
+    ''' Breadth-first search algorithm.
+
+    Args:
+        start_state: The initial state of the search.
+        goal_state: The goal state of the search.
+
+    Returns:
+        A tuple containing the solution path and the number of nodes expanded.
+    '''
+
     Node = namedtuple('Node', ['state', 'parent', 'action'])
     node = Node(start_state, None, None)
     

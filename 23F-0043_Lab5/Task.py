@@ -1,7 +1,22 @@
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 from collections import namedtuple
 from provided.utils import PriorityQueue, solution
 
 def ASS(start_state, goal_state, heuristic):
+    ''' A* Search Algorithm
+
+    Args:
+        start_state: The initial state of the search
+        goal_state: The state to reach
+        heuristic: The heuristic function to use
+        
+    Returns:
+        A tuple containing the solution path and the number of nodes expanded
+    '''
     Node = namedtuple('Node', ['state', 'parent', 'action', 'cost'])
     node = Node(start_state, None, None, 0)
 
