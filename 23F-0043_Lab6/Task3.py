@@ -4,7 +4,6 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import matplotlib.pyplot as plt
-import heapq
 
 class LocalBeamSearch:
     ''' Local Beam Search Algorithm
@@ -27,6 +26,7 @@ class LocalBeamSearch:
 
         Args:
             states: k randomly generated states
+            maxiterations: The maximum number of iterations
 
         Returns:
             Final state of the search

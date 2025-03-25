@@ -37,7 +37,7 @@ class SeamulatedAnealingSearch:
         T = initial_temperature
 
         while True:
-            current.plot()
+            current.plot(show_conflicts=True)
             
             self.temperature.append(T)
             self.history.append(current.conflicts())
