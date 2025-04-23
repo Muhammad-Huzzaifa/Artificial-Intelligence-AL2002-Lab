@@ -60,17 +60,15 @@ class AC3:
         queue = self.constraints[::]
 
         while queue:
-            Xi, Xj = queue[0][0], queue[0][-1]
-            queue.pop(0)
-            
-            constraint = [constraint for constraint in self.constraints if constraint[0] == Xi and constraint[-1] == Xj][0]
+            constraint = queue.pop(0)
+            Xi, Xj = constraint[0], constraint[-1]
 
             if self.revise(constraint, Xi, Xj):
                 if not self.domains[Xi]:
                     return False
                 
                 for constraint in self.constraints:
-                    if constraint[-1] == Xi:
+                    if constraint[0] != Xj and constraint[-1] == Xi:
                         queue.append(constraint)
 
         return True
